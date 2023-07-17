@@ -1,0 +1,76 @@
+@import "../scss/variables";
+
+#navbar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: solid 1px $color-grey-3;
+  // position: fixed;
+
+  .navbar-title {
+    display: flex;
+    flex-direction: row;
+
+    button {
+      background-color: $color-white;
+      color: $color-grey-1;
+      padding: 0.25rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      outline: none;
+      cursor: pointer;
+    }
+  }
+
+  .navbar-input {
+    $__navbar-input-height: 2rem;
+    display: none;
+
+    button {
+      background-color: $color-grey-4;
+      color: $color-grey-1;
+      padding: 0.5rem;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      height: $__navbar-input-height;
+      &.navbar-input-search {
+        border-radius: 50% 0 0 50%;
+      }
+      &.navbar-input-filter {
+        border-radius: 0 50% 50% 0;
+      }
+    }
+
+    input {
+      height: $__navbar-input-height;
+      background-color: $color-grey-4;
+      padding: 0.5rem 1rem;
+      min-width: 16rem;
+      border: none;
+      outline: none;
+      font-weight: 500;
+      color: $color-grey-1;
+
+      &::placeholder {
+        color: $color-grey-2;
+      }
+    }
+  }
+
+  @media only screen and (min-width: ($mobile-screen-max-width + 1px)) {
+    .navbar-title {
+      margin-left: 2rem;
+    }
+
+    .navbar-input {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

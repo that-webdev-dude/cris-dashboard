@@ -1,0 +1,72 @@
+@import "../scss/variables";
+
+$__container-max-width: 34rem;
+
+.info-chart {
+  .info-chart-title,
+  .info-chart-area,
+  .info-chart-footer {
+    width: 100%;
+    margin: auto;
+    max-width: $__container-max-width;
+  }
+
+  .info-chart-title,
+  .info-chart-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+  }
+
+  .info-chart-button {
+    background-color: $color-white;
+    color: $color-grey-1;
+    width: 3rem;
+    height: 3rem;
+    padding: 0.25rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      box-shadow: 0px 12px 12px 0px $color-grey-3;
+      color: $color-secondary;
+    }
+  }
+
+  .info-chart-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.info-stat {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+
+  .info-stat-card {
+    width: 4rem;
+    height: 4rem;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    margin-right: 1rem;
+  }
+  .info-stat-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}

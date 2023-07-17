@@ -1,0 +1,54 @@
+@import "../scss/variables";
+
+.info-card {
+  width: 100%;
+  max-width: 30rem;
+  margin: 1rem auto 6rem;
+  background: radial-gradient(
+    circle at 100% 0%,
+    rgba(103, 58, 183, 1) 0%,
+    rgba(84, 74, 195, 1) 31%
+  );
+  border-radius: 1rem;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0px 12px 12px 0px $color-grey-3;
+  }
+
+  .info-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .info-card-header-rank {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .info-card-header-bookmark {
+      button {
+        padding: 0.25rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        outline: none;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .info-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  @media only screen and (min-width: ($laptop-screen-max-width + 1px)) {
+    .info-card-content,
+    .info-card-header {
+      margin-bottom: 1rem;
+    }
+  }
+}

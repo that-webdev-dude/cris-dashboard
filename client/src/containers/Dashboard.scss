@@ -1,0 +1,86 @@
+@import "../scss/variables";
+
+.dashboard {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .dashboard-stats,
+  .dashboard-summary {
+    padding: 4rem 1rem;
+  }
+
+  .dashboard-stats {
+    flex: 1;
+    order: 2;
+
+    .dashboard-stats-scores,
+    .dashboard-stats-line {
+      width: 100%;
+      max-width: 64rem;
+      margin: 0 auto;
+    }
+
+    .dashboard-stats-scores {
+      flex: 1;
+      display: grid;
+      align-items: center;
+      justify-items: center;
+      grid-template-columns: repeat(2, 1fr);
+      padding: 1rem 4rem;
+      margin-bottom: 4rem;
+      gap: 1rem;
+    }
+
+    .dashboard-stats-line {
+      padding: 1rem;
+      .dashboard-stats-line-title {
+        font-family: $font-family;
+        font-size: 1.5rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+      }
+    }
+  }
+
+  .dashboard-summary {
+    flex: 1;
+    order: 1;
+  }
+
+  @media only screen and (min-width: ($mobile-screen-max-width + 1px)) {
+    .dashboard-stats {
+      .dashboard-stats-scores {
+        padding: 1rem 4rem;
+        max-width: 48rem;
+      }
+      .dashboard-stats-line {
+        padding: 1rem 3rem;
+        max-width: 52rem;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  @media only screen and (min-width: ($laptop-screen-max-width + 1px)) {
+    flex-direction: row;
+    .dashboard-stats {
+      flex: 2;
+      order: 1;
+
+      .dashboard-stats-scores {
+        padding: 1rem 2rem;
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .dashboard-stats-line {
+        padding: 1rem 2rem;
+      }
+    }
+
+    .dashboard-summary {
+      flex: 1;
+      order: 2;
+    }
+  }
+}
