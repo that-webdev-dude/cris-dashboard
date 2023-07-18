@@ -12,7 +12,7 @@ The main content of the app allows to inspect the data plotted on a diversity of
 
 The app is fully responsive, ensuring a seamless user experience across various devices and screen sizes. The user interface is designed to be simple and intuitive, making it easy for users to find the information they need and ensuring a smooth UX.
 
-<img width="700px" src="https://github.com/that-webdev-dude/cris-dashboard/blob/main/screengrabs/cris-dashboard-screengrab.png" alt="app screengrab">
+<img width="700px" src="https://github.com/that-webdev-dude/cris-dashboard/blob/main/screengrabs/screengrab.png" alt="app screengrab">
 
 ### Live Demo
 
