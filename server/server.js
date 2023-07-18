@@ -13,59 +13,34 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get("/countries", (req, res) => {
-  const countries = db.map((item) => ({
+app.get("/clients", (req, res) => {
+  const result = db.map((item) => ({
     id: item.id,
     name: item.name,
-    code: item.code,
-    img: item.img,
   }));
-  res.json(countries);
+  res.json(result);
 });
 
-app.get("/countries/:id", (req, res) => {
+app.get("/clients/:id", (req, res) => {
   const { id } = req.params;
   db.findById(id)
-    .then((country) => {
-      res.json(country);
+    .then((result) => {
+      res.json(result);
     })
     .catch((error) => {
       res.status(404).json({ error: error.message });
     });
 });
 
-app.get("/countries/name/:countryName", (req, res) => {
-  const { countryName } = req.params;
-  db.findByCountryName(countryName)
-    .then((country) => {
-      res.json(country);
+app.get("/clients/name/:clientName", (req, res) => {
+  const { clientName } = req.params;
+  db.findByName(clientName)
+    .then((result) => {
+      res.json(result);
     })
     .catch((error) => {
       res.status(404).json({ error: error.message });
     });
-});
-
-app.get("/countries/code/:countryCode", (req, res) => {
-  const { countryCode } = req.params;
-  db.findByCountryCode(countryCode)
-    .then((country) => {
-      res.json(country);
-    })
-    .catch((error) => {
-      res.status(404).json({ error: error.message });
-    });
-});
-
-app.post("/countries/batch", async (req, res) => {
-  const { countryIDs } = req.body;
-  const countries = [];
-  for (const id of countryIDs) {
-    const country = await db.findById(id);
-    if (country) {
-      countries.push(country);
-    }
-  }
-  res.json(countries);
 });
 
 // production

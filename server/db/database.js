@@ -26,30 +26,21 @@ class Database {
     });
   }
 
-  findByCountryName(countryName) {
+  findByName(name) {
     return new Promise((resolve, reject) => {
       for (const item of this.data) {
-        if (countryName === item.name) resolve(item);
+        if (name === item.name) resolve(item);
       }
-      reject(
-        new Error(`DB Error: ${countryName} is not registered in the Database`)
-      );
-    });
-  }
-
-  findByCountryCode(countryCode) {
-    return new Promise((resolve, reject) => {
-      for (const item of this.data) {
-        if (countryCode === item.code) resolve(item);
-      }
-      reject(
-        new Error(`DB Error: ${countryCode} is not registered in the Database`)
-      );
+      reject(new Error(`DB Error: ${name} is not registered in the Database`));
     });
   }
 
   map(f) {
     return this.data.map(f);
+  }
+
+  all() {
+    return this.data;
   }
 }
 
