@@ -16,7 +16,7 @@ The app is fully responsive, ensuring a seamless user experience across various 
 
 ### Live Demo
 
-A live demo of the project is available [here](https://that-cris-a0f96dfb8641.herokuapp.com/).
+A live demo of the project is available [here](https://that-cris-dashboard-836b928d5608.herokuapp.com/).
 
 ## Authors
 
