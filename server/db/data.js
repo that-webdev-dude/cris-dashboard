@@ -99,7 +99,6 @@ const generate = (clients) => {
     return {
       id: uid(10),
       division: "DevOps",
-
       favourite: randOneFrom([true, false]),
       name: name,
       HQ: randOneFrom(["Rome", "Milan", "Paris", "London"]),
@@ -113,7 +112,6 @@ const generate = (clients) => {
       projects: rand(50, 100),
       period: ["01/2000", "03/2024"],
       rank: randOneFrom(["Primary", "Contractor"]),
-
       projects: {
         completed: rand(10, 50),
         ongoing: rand(0, 20),
