@@ -31,24 +31,25 @@ const InfoStat = ({
 };
 
 const InfoChart = ({ data }) => {
+  const { projects } = data[0];
   return (
     <div className="info-chart">
       <div className="info-chart-title">
         <InfoStat
           title={"Total Projects"}
-          value={data[0].client.projects} // change dataset
+          value={projects.completed + projects.ongoing} // change dataset
         />
         <button className="info-chart-button">
           <RiDownloadLine />
         </button>
       </div>
       <div className="info-chart-area">
-        <ChartBar />
+        <ChartBar data={data} />
       </div>
       <div className="info-chart-footer">
         <InfoStat
           title={"Completed"}
-          value={data[0].projects.completed}
+          value={projects.completed}
           card={true}
           cardColor="secondary"
           IconRef={RiLeafLine}
@@ -56,7 +57,7 @@ const InfoChart = ({ data }) => {
         />
         <InfoStat
           title={"Ongoing"}
-          value={data[0].projects.ongoing}
+          value={projects.ongoing}
           card={true}
           cardColor="primary"
           IconRef={RiRefreshLine}

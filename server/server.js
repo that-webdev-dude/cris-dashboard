@@ -18,6 +18,7 @@ app.get("/clients", (req, res) => {
     id: item.id,
     name: item.name,
   }));
+
   res.json(result);
 });
 

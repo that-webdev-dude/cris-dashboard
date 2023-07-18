@@ -1,4 +1,3 @@
-// import "default-passive-events";
 import React, { useEffect, useRef } from "react";
 import * as echarts from "echarts";
 
@@ -9,28 +8,13 @@ const colors = {
 };
 
 const ChartLine = ({ data }) => {
+  const { history } = data[0];
+
   const chartRef = useRef(null);
   let chartInstance = null;
 
   useEffect(() => {
     chartInstance = echarts.init(chartRef.current, "svg");
-
-    const generateRandomData = () => {
-      const xAxisData = [];
-      const seriesData1 = [];
-      const seriesData2 = [];
-
-      const currentYear = new Date().getFullYear();
-      for (let i = currentYear - 6; i <= currentYear; i++) {
-        xAxisData.push(i);
-        seriesData1.push(Math.floor(Math.random() * 100));
-        seriesData2.push(Math.floor(Math.random() * 100));
-      }
-
-      return { xAxisData, seriesData1, seriesData2 };
-    };
-
-    const { xAxisData, seriesData1, seriesData2 } = generateRandomData();
 
     const options = {
       grid: {
@@ -48,7 +32,7 @@ const ChartLine = ({ data }) => {
           color: "#ffffff",
         },
         extraCssText: "width: 100spx; padding: 1.5rem;",
-        formatter: "{a0}: {c0}<br />{a1}:    {c1}",
+        formatter: "{a0}:{c0}<br />{a1}:{c1}",
       },
       legend: {
         width: "100%",
@@ -81,7 +65,7 @@ const ChartLine = ({ data }) => {
       },
       xAxis: {
         type: "category",
-        data: xAxisData,
+        data: history.years,
         axisLine: {
           lineStyle: {
             color: "transparent",
@@ -97,7 +81,7 @@ const ChartLine = ({ data }) => {
           },
         },
         axisLabel: {
-          interval: 0,
+          interval: 2,
           rotate: 0,
           margin: 20,
           color: colors.text,
@@ -108,14 +92,14 @@ const ChartLine = ({ data }) => {
         {
           type: "value",
           min: 0,
-          max: 100,
+          max: 7,
           position: "left",
           splitLine: { show: true },
         },
         {
           type: "value",
           min: 0,
-          max: 100,
+          max: 7,
           position: "right",
           splitLine: { show: false },
         },
@@ -123,7 +107,7 @@ const ChartLine = ({ data }) => {
       series: [
         {
           name: "Technical",
-          data: seriesData1,
+          data: history.technical,
           yAxisIndex: 1,
           type: "line",
           smooth: true,
@@ -135,7 +119,7 @@ const ChartLine = ({ data }) => {
         },
         {
           name: "Service",
-          data: seriesData2,
+          data: history.service,
           yAxisIndex: 0,
           type: "line",
           smooth: true,
@@ -160,7 +144,7 @@ const ChartLine = ({ data }) => {
       window.removeEventListener("resize", handleResize);
       chartInstance.dispose();
     };
-  }, []);
+  }, [data]);
 
   return (
     <div

@@ -5,7 +5,7 @@ import { Sidebar, Dashboard } from "./containers";
 
 const App = () => {
   const [sidebarActive, setSidebarActive] = useState(false);
-  const [userSelection, setUserSelection] = useState("");
+  const [userSelection, setUserSelection] = useState("Alcaset");
   const [userOptions, setUserOptions] = useState([]);
   const [userData, setUserData] = useState([]);
   const [userPage, setUserPage] = useState("DevOps");
@@ -13,52 +13,40 @@ const App = () => {
 
   // side effects
   useEffect(() => {
-    const initialize = () => {
-      setUserOptions([
-        { name: "Fintech" },
-        { name: "Splash" },
-        { name: "Sofinmore" },
-        { name: "Alcaset" },
-        { name: "Exotech" },
-      ]);
-
-      if (userOptions?.length > 0) {
+    const initialize = async () => {
+      try {
+        const optionsResponse = await fetch("/clients");
+        if (optionsResponse.ok) {
+          const opitonsData = await optionsResponse.json();
+          setUserOptions(opitonsData);
+        } else {
+          throw new Error("Error fetching client data");
+        }
         setReady(true);
+      } catch (error) {
+        console.error(error);
       }
     };
     initialize();
   }, [ready]);
 
   useEffect(() => {
-    const fetchData = () => {
-      if (userSelection !== "") {
-        const data = [
-          {
-            division: "DevOps",
-            client: {
-              favourite: true,
-              name: userSelection,
-              HQ: "London",
-              business: "Data Analytics",
-              centers: 58,
-              projects: 496,
-              period: ["01/2001", "03/2020"],
-              rank: "Primary",
-            },
-            projects: {
-              completed: 209,
-              ongoing: 43,
-            },
-            feedback: {
-              loyalty: 10,
-              technical: 2.8,
-              service: 3.0,
-              NPS: -45,
-            },
-            history: [],
-          },
-        ];
-        setUserData([...data]);
+    const fetchData = async () => {
+      try {
+        if (userSelection !== "") {
+          const current = userData.find((item) => item.name === userSelection);
+          if (!current) {
+            const response = await fetch(`clients/name/${userSelection}`);
+            if (response.ok) {
+              const data = await response.json();
+              setUserData([data]);
+            } else {
+              throw new Error("Error fetching client data");
+            }
+          }
+        }
+      } catch (error) {
+        console.log(error);
       }
     };
     fetchData();
@@ -76,7 +64,7 @@ const App = () => {
   return (
     <div>
       {ready ? (
-        <div className="app text-white">
+        <div className="app">
           <Sidebar menuActive={sidebarActive} onChange={toggleSidebar} />
           <div className="main">
             <Navbar
